@@ -44,7 +44,7 @@ void draw(){
   noStroke();
   fill(136,69,19);
   rect(position.x,position.y,20,100);
-  fill(173,255,47);
+  fill(r,g,b);
   ellipse(position.x+10,position.y,radius,radius);
   
 }
