@@ -13,12 +13,35 @@ File[] tempfiles;
 ArrayList<File> files;
 PImage image;
 String currentFilename;
+float ANGLE_STEP = PI / 1;
+float angle = 0.0;
+//float ANGLEE_STEP = PI / 10;
+//float anglee = 34.0;
+float ANGLEEE_STEP = PI / 6;
+float angleee = 34.0;
+Ship[] ships; //array of ships
+int num = 5; // number of ships
+
+float currentColorR;
+float currentColorG;
+float currentColorB;
+
 
 // EDIT THIS LINE WITH YOUR NAME!
 String studentName = "JAEKY CHEONG";
 
 void setup() {
   files = new ArrayList<File>();
+  currentColorR = int(random(256));
+  currentColorG = int(random(256));
+  currentColorB = int(random(256));
+  
+  ships = new Ship[num];
+  
+  for(int i=0; i<num; i++){
+  ships[i] = new Ship();
+  
+  }
 
   // get list of files from directory
   File dir = new File(sketchPath() + "/rawFrames");
@@ -46,6 +69,21 @@ void draw() {
   prepare();
 
   // BEGIN ADDING YOUR CODE HERE -----
+for(int i=0; i < 10; i++){
+    tree(i*120+10, 450);}
+    
+  fill(currentColorR, currentColorG, currentColorB,100);
+  stroke(0);
+  arc(450, 540, 500, 500, angle, angle + ANGLE_STEP);
+  //arc(450, 540, 550, 550, anglee, anglee + ANGLEE_STEP);
+  arc(450, 540, 600, 600, angleee, angleee + ANGLEEE_STEP);
+  angle += ANGLE_STEP;
+  //anglee += ANGLEE_STEP;
+  angleee += ANGLEEE_STEP;
+  
+  for(int i =0; i<num; i++){
+  ships[i].drawShip();
+  ships[i].moveShip();
 
   // STOP ADDING YOUR CODE HERE -----
 
@@ -56,7 +94,19 @@ void draw() {
     exit();
   }
 }
+}
 
+
+
+
+void tree(float x, float y){
+  noStroke();
+  fill(136,69,19,200);
+  rect(x,y,20,100);
+  fill(173,255,47,200);
+  ellipse(x+10,y,100,100);
+  
+}
 // DO NOT ALTER THIS FUNCTION!!
 void prepare() {
   String path = files.get(frameCount-1).getAbsolutePath();
